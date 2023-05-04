@@ -25,12 +25,12 @@ app.get("/posts", (_req, res) => {
         <div class='news-item'>
           <p>
             <span class="news-position">${post.id}. ▲</span>
+            <a href="/posts/${post.id}">${post.title}</a>
             ${post.title}
             <small>(by ${post.name})</small>
           </p>
           <small class="news-info">
             ${post.upvotes} upvotes | ${post.date}
-            <div><a href="/posts/${post.id}">${post.title}</a></div>
           </small>
         </div>`
     ).join('')}
