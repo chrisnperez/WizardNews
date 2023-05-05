@@ -4,11 +4,11 @@ const morgan = require('morgan');
 const postBank = require("./postBank");
 const path = require('path')
 
-app.get("/", (req, res) => res.send("Hello World!"));
+// app.get("/", (req, res) => res.send("Hello World!"));
 
 app.use(morgan('dev'));
 
-app.get("/posts", (_req, res) => {
+app.get("/", (_req, res) => {
   const posts = postBank.list();
 
   const html =
@@ -57,11 +57,12 @@ app.get("/posts/:id", (req, res) => {
       <title>Wizard News</title>
       <link rel="stylesheet" href="/style.css" />
     </head>
+
     <body>
       <header><img src="/logo.png"/>Wizard News</header>
-      <div class="not-found">
-        <p>404: Page Not Found</p>
-      </div>
+        <div class="not-found">
+         <p>404: Page Not Found</p>
+        </div>
     </body>
     </html>`
     res.send(html)
@@ -95,7 +96,10 @@ app.get("/posts/:id", (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const PORT = 1337;
+// const PORT = 1337;
+
+const { PORT = 1337 } = process.env;
+
 
 app.listen(PORT, () => {
   console.log(`App listening in port ${PORT}`);
